@@ -15,7 +15,7 @@ def threads
     Thread.new do
       fib(30)
     end
-  end.each(&:join)
+  end.each(&:value)
 end
 
 def fibers
@@ -36,9 +36,31 @@ def forking
   Process.waitall
 end
 
+def ractors
+  10.times.map do
+    Ractor.new do
+      fib(30)
+    end
+  end.each(&:take)
+end
+
+require 'celluloid'
+
+Celluloid.boot
+
+def celluloid
+  10.times.map do
+      Celluloid::Future.new do
+      fib(30)
+    end
+  end.each(&:value)
+end
+
 Benchmark.bm do |x|
-  #x.report('sync')    {  sync    }
+  x.report('sync')    {  sync    }
   x.report('threads') {  threads }
-  #x.report('fibers')  {  fibers  }
-  #x.report('forking') {  forking }
+  x.report('fibers')  {  fibers  }
+  x.report('forking') {  forking }
+  x.report('ractors') {  ractors }
+  x.report('celluloid') {  celluloid }
 end
