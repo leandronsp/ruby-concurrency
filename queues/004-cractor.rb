@@ -13,17 +13,15 @@ class Cractor
         end
       end
     end
-
-    self
   end
 
   def inbox = @inbox
   def outbox = @outbox
 end
 
-state = Cractor.new(0)
+actor = Cractor.new(0)
 
-state.inbox.push({ increment: 10 })
-state.inbox.push({ get: :balance })
+actor.inbox.push({ increment: 10 })
+actor.inbox.push({ get: :balance })
 
-puts "Balance is #{state.outbox.pop}"
+puts "Balance is #{actor.outbox.pop}"

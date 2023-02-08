@@ -1,6 +1,6 @@
 class Account
   def initialize(balance = 0)
-    @state = Ractor.new(0) do |balance|
+    @actor = Ractor.new(0) do |balance|
       loop do
         message = Ractor.receive
 
@@ -13,17 +13,16 @@ class Account
   end
 
   def increment(value)
-    @state.send({ increment: value })
+    @actor.send({ increment: value })
   end
 
   def balance
-    @state.send({ get: :balance })
-    @state.take
+    @actor.send({ get: :balance })
+    @actor.take
   end
 end
 
 account = Account.new
-
 account.increment(10)
 
 puts "Balance is #{account.balance}"

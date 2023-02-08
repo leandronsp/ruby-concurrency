@@ -6,12 +6,10 @@ class Cractor
     @outbox = SynchronizedQueue.new
 
     Thread.new do
-      result = block.call(self, *args)
+      result = block.call(@inbox, @outbox, *args)
 
       @outbox.push(result)
     end
-
-    self
   end
 
   def push(value) = @inbox.push(value)

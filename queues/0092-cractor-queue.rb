@@ -1,14 +1,14 @@
 require './lib/cractor'
 
-@inbox = Cractor.new do |instance|
+@inbox = Cractor.new do |inbox, outbox|
   loop do
-    instance.outbox.push(instance.inbox.pop)
+    outbox.push(inbox.pop)
   end
 end
 
-@outbox = Cractor.new do |instance|
+@outbox = Cractor.new do |inbox, outbox|
   loop do
-    instance.outbox.push(instance.inbox.pop)
+    outbox.push(inbox.pop)
   end
 end
 

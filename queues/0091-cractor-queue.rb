@@ -1,8 +1,8 @@
 require './lib/cractor'
 
-queue = Cractor.new do |instance|
+queue = Cractor.new do |inbox, outbox|
   loop do
-    instance.outbox.push(instance.inbox.pop)
+    outbox.push(inbox.pop)
   end
 end
 

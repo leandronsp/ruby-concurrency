@@ -1,4 +1,9 @@
-@queue = Queue.new
+require './lib/cractor-queue'
+require './lib/ractor-queue'
+
+#@queue = Queue.new
+#@queue = CractorQueue.new
+@queue = RactorQueue.new
 
 # Background
 Thread.new do
