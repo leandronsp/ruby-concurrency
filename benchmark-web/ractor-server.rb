@@ -1,6 +1,6 @@
 require 'socket'
 
-PORT, CONCURRENCY = ARGV.values_at(0, 1).map(&:to_i)
+PORT, CPUS = ARGV.values_at(0, 1).map(&:to_i)
 
 @queue = Ractor.new do
   loop do
@@ -8,7 +8,7 @@ PORT, CONCURRENCY = ARGV.values_at(0, 1).map(&:to_i)
   end
 end
 
-workers = CONCURRENCY.times.map do
+workers = CPUS.times.map do
   Ractor.new(@queue) do |queue|
     loop do
       client = queue.take

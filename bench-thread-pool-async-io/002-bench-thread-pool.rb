@@ -49,7 +49,6 @@ def thread_pool
     end
   end
 
-  main_mutex = Mutex
   while queue.size > 0
     sleep 0.05
   end
