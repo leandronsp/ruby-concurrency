@@ -4,6 +4,7 @@ queue = []
 
 puts "Waiting for jobs in the queue..."
 
+# Worker
 loop do
   job = queue.shift
 
@@ -12,6 +13,7 @@ loop do
   end
 end
 
+# Enqueuer
 loop do
   sleep 0.05
   print "Digite qualquer coisa: "

@@ -6,11 +6,12 @@ emitter = ConditionVariable.new
 
 puts "Waiting for jobs in the queue..."
 
+# Worker Thread
 Thread.new do
   loop do
     mutex.lock
 
-    while queue.size == 0
+    if queue.size == 0
       emitter.wait(mutex)
     end
 
@@ -22,6 +23,7 @@ Thread.new do
   end
 end
 
+# Enqueuer
 loop do
   sleep 0.05
   print "Digite qualquer coisa: "

@@ -4,6 +4,7 @@ queue = []
 
 puts "Waiting for jobs in the queue..."
 
+# Worker Thread
 Thread.new do
   loop do
     job = queue.shift
@@ -14,6 +15,7 @@ Thread.new do
   end
 end
 
+# Enqueuer
 loop do
   sleep 0.05
   print "Digite qualquer coisa: "
