@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sidekiq -r './background-jobs/005-sidekiq/server.rb' -c 4

@@ -21,4 +21,8 @@ class MySynchronizedQueue
       @queue.shift
     end
   end
+
+  def any?
+    @queue.any?
+  end
 end

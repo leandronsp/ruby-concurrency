@@ -5,7 +5,6 @@ def one = 1
 
 set_initial_balance = Thread.new do
   @mutex.synchronize do
-    Thread.stop
     @balance = 42
   end
 end

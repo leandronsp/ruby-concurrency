@@ -1,5 +1,4 @@
 #!/bin/sh
-
 ## Cria o named pipe
 mkfifo myqueue
 

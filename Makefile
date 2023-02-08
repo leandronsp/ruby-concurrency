@@ -1,20 +1,17 @@
 bash:
 	@docker-compose run \
 		--rm \
-		--name test \
+		--name app \
 		-p 3000:3000 \
 		ruby \
 		bash
 
-test.bash:
-	@docker exec -it test bash
+app.bash:
+	@docker exec -it app bash
 
 redis:
 	@docker run \
 		--rm \
 		--name redis \
+		--network test \
 		redis
-
-network:
-	@docker network connect test test
-	@docker network connect test redis

@@ -12,14 +12,22 @@ worker = Thread.new do
 
   loop do
     encoded = queue.pop
-    next unless encoded
+    #next unless encoded
+
+    unless encoded
+      until queue.any?
+        puts "Going to sleep..."
+        sleep
+      end
+    end
 
     puts "[#{wid}][#{Time.now}] Encoded: #{encoded.chop} | Decoded: #{Base64.decode64(encoded)}"
   end
 end
 
-queue.push(Base64.encode64('hello'))
-queue.push(Base64.encode64('world'))
+15.times do |index|
+  queue.push(Base64.encode64("hello_#{index}"))
+end
 
 while queue.any?
   puts 'Waiting queue to be empty...'

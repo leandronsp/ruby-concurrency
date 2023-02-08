@@ -1,4 +1,3 @@
-puts "#### Queues are Arrays ####"
 queue = Array.new
 
 queue << 1

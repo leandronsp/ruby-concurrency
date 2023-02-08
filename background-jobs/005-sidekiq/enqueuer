@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ruby background-jobs/005-sidekiq/enqueuer.rb job 3000

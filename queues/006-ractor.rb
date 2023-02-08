@@ -1,6 +1,4 @@
-@balance = 0
-
-account = Ractor.new(@balance) do |balance|
+account = Ractor.new(0) do |balance|
   loop do
     message = Ractor.receive # inbox.pop
 

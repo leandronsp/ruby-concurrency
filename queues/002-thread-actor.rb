@@ -1,12 +1,16 @@
 require './lib/synchronized-queue'
+require './lib/my-queue'
 
 puts "#### Actors do not share state ####"
+
+#@inbox  = MyQueue.new
+#@outbox = MyQueue.new
 
 @inbox  = SynchronizedQueue.new
 @outbox = SynchronizedQueue.new
 
 #### Actor ####
-Thread.new do
+actor = Thread.new do
   balance = 0 # <---- internal, only accessible within the thread
 
   loop do
